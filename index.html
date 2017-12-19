@@ -108,10 +108,8 @@
                     event.preventDefault();
 
                     const messages = messageEl.value.trim().split(',');
-                    let message;
-
                     while(messages.length) {
-                        message = messages.shift();
+                        const message = messages.shift();
 
                         if (!message) { continue; }
 
