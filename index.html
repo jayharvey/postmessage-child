@@ -107,10 +107,19 @@
                 formEl.addEventListener('submit', event => {
                     event.preventDefault();
 
-                    window.parent.postMessage(
-                        jsonEl.checked ? JSON.parse(messageEl.value) : messageEl.value,
-                        originEl.value || '*'
-                    );
+                    const messages = messageEl.value.trim().split(',');
+                    let message;
+
+                    while(messages.length) {
+                        message = messages.shift();
+
+                        if (!message) { continue; }
+
+                        window.parent.postMessage(
+                            jsonEl.checked ? JSON.parse(message.trim()) : message.trim(),
+                            originEl.value || '*'
+                        );
+                    }
                 });
 
                 generateEl.addEventListener('click', () => {
